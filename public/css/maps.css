@@ -1,0 +1,460 @@
+.base-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(44, 43, 43);
+}
+
+.lower-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    height: 90vh;
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    height: 10vh;
+}
+
+
+.header > .logo {
+    width: 10vw;
+    max-width: 150px; 
+    min-width: 100px;
+    margin: 6.5%;
+    scale: 1.2;
+    margin-top: 8%;
+}
+
+.header > a > .logout {
+    
+    height: 2vw;
+    width: 2vw;
+    
+    margin: 1vh;
+    border: 0px;
+
+    background-image: url("../img/logout.svg");
+    background-color: white;
+    
+    cursor: pointer;
+}
+
+.header > form {
+    width: 30vw;
+    height: auto;
+}
+
+.maps-container > form > input {
+    height: 35px;
+    width: 20vw;
+
+    box-shadow: rgba(30, 30, 30, 0.2) 0px 4px 4px 0px;
+    border: 1px solid #2d2d2d;
+    margin: 1vh;
+
+    color: rgb(28, 25, 25);
+    font-weight: 400;
+    font-size: 1.5vh;
+    letter-spacing: 0.72px;
+}
+
+.maps-container > form > .no-valid {
+    border: 1px solid red;
+}
+
+.maps-container > form {
+    height: 100%;
+    position: relative;
+    top: 6%;
+}
+
+.header > input {
+
+    box-sizing: border-box;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: 1px solid #2d2d2d;
+    border-radius: 25px;
+
+    width: 40%;
+    text-align: center;
+    letter-spacing: 0.72px;
+    
+    margin: 0;
+    padding: 1vh;
+
+    margin-left: 10%;
+} 
+
+.nav-bar {
+    width: 15vw;
+    height: 100%;
+    font-size: 0.8vw;
+}
+
+.nav-bar > .profile-photo {
+    width: 6vw;
+    margin-top: 8vh;
+    margin-bottom: 3vh;
+    padding: 0.25vh;
+    border: 2px solid #2d2d2d;
+}
+
+
+.nav-bar > form {
+     position: relative; 
+    top: 6vh;
+    left: 4vh;
+    height: 85%;
+}
+
+.nav-bar > form > button,
+.maps-container > form > button,
+.maps-container > .flex-center > form > button {
+
+    height: 35px;
+    width: 10vw;
+    /* margin: 1vh; */
+    margin-bottom: 1vh;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: 1px solid #414141;
+    border-radius: 8px;
+    font-weight: 600;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    font-size: 1vw;
+    text-align: left;
+}
+
+.maps-container > .flex-center > form > button:hover {
+    box-shadow: rgba(99, 99, 99, 0.3) 0px 3px 12px 0px;
+}
+
+.maps-container > .flex-center > form > button {
+    box-shadow: 0px;
+    background-color: white;
+}
+
+.maps-container > form > button {
+    width: 20vw;
+}
+
+.maps-container {
+    height: calc(90vh - 5vh);
+    width: calc(85vw - 2px);
+}
+
+.maps-css {
+    height: calc(90vh - 5vh - 8em);
+    width: calc(85vw - 8em - 2px);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; 
+    padding: 4em;
+    grid-gap: 1em 8em;
+    overflow: auto;
+}
+
+.maps-css > a:link { 
+    text-decoration: none; 
+} 
+
+.maps-css > a:visited { 
+    text-decoration: none; 
+} 
+
+.maps-css > a:hover { 
+    text-decoration: none; 
+} 
+
+.maps-css > a:active { 
+    text-decoration: none; 
+}
+
+.maps-css > a > div {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); 
+    border-radius: 1em 1em 0 0;
+    height: 250px;
+    /* width: 300px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.maps-css > a > div:hover {
+    box-shadow: rgba(70, 69, 69, 0.3) 0px 2px 8px 0px;
+}
+
+.maps-css > a > div > img {
+    height: 70%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1em 1em 0 0;
+}
+
+
+.maps-css > a > div > div {
+    height: 30%;
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 70%;
+    line-height: 50%;
+    margin-top: 5px;
+}
+
+/* .maps-css > a > div > div > .likes {
+    background-color: rgb(248,215,218);
+    border: 1px solid #942129;
+    color: rgb(148,33,41);
+    padding: 1.5vh;
+    margin: 0px;
+} */
+
+.maps-css > a > div > div > form > button {
+    height: 15px;
+    width: 4vw;
+    
+    margin: 1vh;
+
+    box-shadow: 0px;
+    background-color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.maps-css > a > div > div > form > button:hover {
+    box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+}
+
+.maps-container > .flex-center > form > .like-button {
+    /* border: 1px solid #2a2a2a; */
+    color: #3d8d42;
+}
+
+.maps-container > .flex-center > form > .unlike-button {
+    /* border: 1px solid rgb(194, 37, 37); */
+    color: rgb(225, 66, 66);
+}
+
+.maps-container > .flex-center > form > .del-button {
+    /* border: 1px solid rgb(194, 37, 37); */
+    color: rgb(225, 66, 66);
+}
+
+
+/*.info-section {
+    font-size: 0.7vw;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 0px;
+    color: #2d2d2d;
+    letter-spacing: 1px;
+}  */
+
+.info-section {
+    display: flex;
+    flex-direction: row; /* Arranges elements in a row */
+    justify-content: space-between; /* Adds space between elements and container walls */
+    align-items: center; /* Aligns elements vertically in the center */
+    gap: 40px; /* Adds space between flex items */
+    padding: 0 20px; /* Optional: Adjust padding for space between elements and walls */
+    font-style: normal;
+    font-weight: 200;
+    line-height: 0px;
+    color: #2d2d2d;
+    letter-spacing: 1px;
+}
+
+
+
+/* .info-section > i {
+    display: inline-block;
+    margin-right: 1em;
+} */
+
+.maps-container > .flex-center > p {
+    color: black;
+}
+
+.maps-container > .flex-center > img {
+    height: auto;
+    width: 25%;
+    object-fit: cover;
+    border: 1px solid #2d2d2d;
+    padding: 1vh;
+    margin: 2vh;
+}
+
+.maps-css > a {
+    width: auto;
+    height: 250px;
+    max-width: 400px;
+}
+
+@media screen and (max-device-width: 500px){
+    
+    .header > .logo {
+        width: 20vw;
+        margin: 1vh;
+    }
+
+    .header > input {
+        width: 50%;
+    }
+
+    .maps-css {
+    
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 4em;
+        grid-gap: 8em 4em;
+        overflow: auto;
+    }
+
+    .maps-css > a {
+        width: auto;
+        height: 400px;
+    }
+    
+
+    .maps-css > a > div {
+        /* border: 1px solid gray; */
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); 
+        border-radius: 1em 1em 0 0;
+        height: 500px;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        background-color: #2b2a2a;
+
+        font-size: 40px;
+    }
+
+    .maps-css > a > div > div {
+        height: 30%;
+        width: 100%;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 50%;
+    }
+
+
+
+    .info-section  {
+        font-size: 20px;
+    }
+
+    input::placeholder {
+        font-size: 20px;
+    }
+
+    .nav-bar > form > button {
+        height: 8vw;
+        width: 8vw;
+    
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        background-color: transparent;
+        background-size: cover;
+
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-size: 70%; 
+
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+        
+        font-size: 0px;
+    }
+
+    .nav-bar > form > .home-icon {
+        background-image: url("../img/house-solid.svg");
+    }
+
+    .nav-bar > form > .liked-icon {
+        background-image: url("../img/heart-solid.svg");
+    }
+
+    .nav-bar > form > .add-map-icon {
+        background-image: url("../img/plus-solid.svg");
+        color: white;
+    }
+
+    .nav-bar > form > .logout-icon {
+        background-image: url("../img/right-from-bracket-solid.svg");
+        color: white;
+    }
+    .nav-bar > form > .login-icon {
+        background-image: url("../img/right-to-bracket-solid.svg");
+        color: white;
+    }
+
+    .nav-bar > form > .settings-icon {
+        background-image: url("../img/gear-solid.svg");
+        color: white;
+    }
+
+    .nav-bar > .base-font {
+        font-size: 0px;
+    }
+
+    .maps-container > .flex-center {
+        font-size: 25px;
+    }
+    
+    .maps-container > .flex-center > img {
+        width: 70%;
+    }
+
+    .maps-container > .flex-center > form > button {
+        height: 50px;
+        width: 10vw;
+    }
+
+    .maps-container > form > input,
+    .maps-container > form > button {
+        height: 45px;
+        width: 50vw;
+    }
+
+    .maps-container > form > button {
+        font-size: 25px;
+    }
+
+
+    .header > .logo {
+        width: 10vw;
+        margin: 3vh;
+        scale: 1.3;
+    }
+
+
+    .nav-bar > form {
+        position: relative; 
+        top: 2vh;
+        left: 1.5vh;
+   }
+}

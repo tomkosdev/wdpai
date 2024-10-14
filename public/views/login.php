@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
     <link rel="stylesheet" href="public/css/login.css">
+    <link rel="icon" type="image/x-icon" href="public/img/icon.svg">
+    <title>Map Depot</title>
 </head>
+
 <body>
+    <div class="flex-center start-background">
+        <div class="start-container">
+
+            <img class="logo" src="public/img/logo.svg">
+
+        
+            <form class="flex-center" action="login" method="POST">
+                <h2>Log In</h2>
+                <?php
+                    if(isset($messages)){
+                        foreach($messages as $message) {
+                            echo "<p class='warning-box base-font'>".$message."</p>";
+                        }
+                    }
+                ?>
+                <br>
+                <input class="base-font" type="email" name="email" placeholder="Email address" required>
+                <input class="base-font password-hidden" type="password" name="password" placeholder="Password" required>
+            
+                <p class="base-font"><a href="password">Forgot password?</a></p>
+                <br>
+
+                <button type="submit">Log In</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="register">Sign up here.</a></p>
 
 
-
-    <div class="header-content">
-        <div class="links">
-            <img src="public/img/logo.svg" alt="Logo" class="logo">
-            <a href="public/views/home.html">HOME</a>
-            <a href="public/views/signup.html">SIGN UP</a>
-            <!--<a href="login.php">Log in</a>-->
         </div>
     </div>
-
-    <div class="container">
-        <form class="login-form" action="login" method="POST">
-            <h2>Log In</h2>
-
-            <div class="message">
-                <?php   if(isset($messages)){
-                    foreach ($messages as $message) {
-                        echo $message;
-                    }
-                }
-                ?>
-            </div>
-            <br>
-
-            <input type="text" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-
-
-<!--            <label for="email" class="sr-only">Email</label>-->
-<!--            <input type="text" id="email" name="email" placeholder="Email" required>-->
-<!--            <label for="password" class="sr-only">Password</label>-->
-<!--            <input type="password" id="password" name="password" placeholder="Password" required>-->
-
-            <button type="submit">Log In</button>
-            <p class="signup-link">Don’t have an account? <a href="public/views/signup.html">Sign up.</a></p>
-        </form>
-    </div>
 </body>
-</html>

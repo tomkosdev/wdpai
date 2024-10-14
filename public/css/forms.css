@@ -1,0 +1,148 @@
+.error-header {
+    font-weight: 600;
+    font-size: 15vw
+}
+
+.error-message {
+    font-size: 4vw
+}
+
+.start-background {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../img/background.svg");
+    background-color: #2d2d2d;
+    background-size: cover;
+}
+
+.start-container {
+    background-color: white;
+    /* border: 5px solid #2d2d2d; */
+    /* border-radius: 20px; */
+    position: relative;
+
+    min-height: max-content;
+    width: 450px;
+    height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.start-container > .logo {
+    width: 60%;
+    margin-top: 1vh;
+}
+
+.start-container > .footer {
+    width: 70%;
+    position: absolute; 
+    bottom: 0;
+}
+
+.start-container h3 {
+    font-size: 2.5vh;
+    color: #2d2d2d;
+    margin: 5vh;
+    text-align: center;                                 
+}
+
+.start-container button {
+
+    height: 4.5vh;
+    width: 300px;
+    
+    margin: 1vh;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* border: 1px solid #2d2d2d; */
+    /* border-radius: 8px; */
+
+    font-weight: 600;
+    font-size: 2vh;
+
+    cursor: pointer;
+}
+
+.start-container > form > .last-button {
+    margin-top: 6vh;
+}
+
+.start-container input {
+    height: 4.5vh;
+    width: 300px;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* border: 1px solid #2d2d2d; */
+    margin: 1vh;
+
+    color: black;
+    font-weight: 400;
+    font-size: 1.5vh;
+    letter-spacing: 0.72px;
+}
+
+form > .no-valid {
+    border: 1px solid red;
+}
+
+/* .cell {
+    width: 100%;
+} */
+
+.start-container p {
+    font-size: 1.7vh;
+}
+
+@media screen and (max-device-width: 480px){
+
+    .start-container {
+        background-color: white;
+        border: 0px;
+        border-radius: 0px;
+    
+        height: 100%;
+        width: 100%;
+    }
+
+    .start-container button, .start-container input {
+        height: 100px;
+        width: 70vw;
+        font-size: 40px;
+    }
+
+    .start-container button {
+        border-radius: 15px;
+    }
+
+    .start-container h3, .start-container p {
+        overflow-wrap: break-word;    
+    }
+
+    .start-container h3 {
+        font-size: 50px;                         
+    }
+
+    .start-container p {
+        font-size: 40px;
+    }
+
+    input::placeholder {
+        font-size: 32px;
+    }
+
+    .password-hidden {
+        background-size: 70px;
+    }
+
+    .error-header {
+        font-weight: 600;
+        font-size: 15vh
+    }
+    
+    .error-message {
+        font-size: 4vh
+    }
+  }
