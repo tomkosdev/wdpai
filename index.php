@@ -2,13 +2,36 @@
 
 require 'Routing.php';
 
+session_start();
+
 $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url($path, PHP_URL_PATH);
 
-Routing::get('index', 'DefaultController');
-Routing::get('projects', 'DefaultController');
-Routing::get('home', 'DefaultController');
-Routing::post('login', 'SecurityController');
+
+Router::get('', 'SecurityController');
+Router::get('guest', 'SecurityController');
+Router::get('error404', 'DefaultController');
+
+Router::post('login', 'SecurityController');
+Router::post('password', 'SecurityController');
+Router::post('password2', 'SecurityController');
+Router::post('register', 'SecurityController');
+Router::post('logout', 'SecurityController');
+Router::post('search', 'MapsController');
 
 
-Routing::run($path);
+if (isset($_SESSION['email'])) {
+    if ($_SESSION['role'] !== 3) {
+        Router::post('add_map', 'MapsController');
+        Router::get('remove_map', 'MapsController');
+        Router::get('like_map', 'MapsController');
+        Router::get('remove_like', 'MapsController');
+        Router::get('liked_maps', 'MapsController');
+    }
+
+    Router::post('map_info', 'MapsController');
+    Router::get('maps', 'MapsController');
+}
+
+
+Router::run($path);
