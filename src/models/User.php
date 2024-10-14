@@ -1,66 +1,57 @@
 <?php
 
-class User
-{
+class User {
+    private $id;
     private $email;
     private $password;
-    private $name;
-    private $surname;
+    private $nickname;
+    private $role;
 
-    public function __construct(string $email,string $password, string $name, string $surname)
-    {
+    public function __construct(string $email, string $password, string $nickname, $role = 2, $id = null) {
         $this->email = $email;
         $this->password = $password;
-        $this->name = $name;
-        $this->surname = $surname;
+        $this->nickname = $nickname;
+        $this->role = $role;
+        $this->id = $id;
     }
 
-    public function getEmail(): string
+    public function getEmail(): string 
     {
         return $this->email;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(string $email) 
     {
         $this->email = $email;
     }
 
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(string $password)
+    public function setPassword(string $password) 
     {
         $this->password = $password;
     }
 
-    public function getName(): string
+    public function getNickname()
     {
-        return $this->name;
+        return $this->nickname;
     }
 
-    public function setName(string $name)
+    public function setNickname(string $nickname) 
     {
-        $this->name = $name;
+        $this->nickname = $nickname;
     }
 
-    public function getSurname(): string
+    public function getRole()
     {
-        return $this->surname;
+        return $this->role;
     }
 
-    public function setSurname(string $surname)
+    public function getId()
     {
-        $this->surname = $surname;
-    }
-
-
-
-
-
-
-
-
-
+        return $this->id;
+    } 
 }
