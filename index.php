@@ -18,6 +18,9 @@ Router::post('password2', 'SecurityController');
 Router::post('register', 'SecurityController');
 Router::post('logout', 'SecurityController');
 Router::post('search', 'MapsController');
+Router::post('download', 'MapsController');
+
+
 
 
 if (isset($_SESSION['email'])) {
