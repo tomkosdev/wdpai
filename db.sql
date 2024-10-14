@@ -5,7 +5,7 @@
 -- Dumped from database version 16.4 (Debian 16.4-1.pgdg120+2)
 -- Dumped by pg_dump version 16.4
 
--- Started on 2024-10-14 16:54:31 UTC
+-- Started on 2024-10-14 19:31:12 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -113,7 +113,7 @@ CREATE SEQUENCE public.detailspk
 ALTER SEQUENCE public.detailspk OWNER TO docker;
 
 --
--- TOC entry 3401 (class 0 OID 0)
+-- TOC entry 3402 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: detailspk; Type: SEQUENCE OWNED BY; Schema: public; Owner: docker
 --
@@ -133,7 +133,8 @@ CREATE TABLE public.maps (
     date date,
     likes integer DEFAULT 0,
     image character varying(255),
-    uploader character varying DEFAULT ''::character varying
+    uploader character varying DEFAULT ''::character varying,
+    pk3file character varying DEFAULT ''::character varying
 );
 
 
@@ -155,7 +156,7 @@ CREATE SEQUENCE public.mapspk
 ALTER SEQUENCE public.mapspk OWNER TO docker;
 
 --
--- TOC entry 3402 (class 0 OID 0)
+-- TOC entry 3403 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: mapspk; Type: SEQUENCE OWNED BY; Schema: public; Owner: docker
 --
@@ -207,7 +208,7 @@ CREATE SEQUENCE public.userpk
 ALTER SEQUENCE public.userpk OWNER TO docker;
 
 --
--- TOC entry 3403 (class 0 OID 0)
+-- TOC entry 3404 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: userpk; Type: SEQUENCE OWNED BY; Schema: public; Owner: docker
 --
@@ -232,7 +233,7 @@ ALTER TABLE ONLY public.maps ALTER COLUMN id SET DEFAULT nextval('public.mapspk'
 
 
 --
--- TOC entry 3228 (class 2604 OID 16421)
+-- TOC entry 3229 (class 2604 OID 16421)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: docker
 --
 
@@ -240,36 +241,40 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.userpk
 
 
 --
--- TOC entry 3389 (class 0 OID 16395)
+-- TOC entry 3390 (class 0 OID 16395)
 -- Dependencies: 216
 -- Data for Name: details; Type: TABLE DATA; Schema: public; Owner: docker
 --
 
 COPY public.details (id, email, password) FROM stdin;
 2	guest@guest.pl	084e0343a0486ff05530df6c705c8bb4
-10	tomek@tomek.pl	955303ee837e4fdd2e9ec8a05d35885e
 11	asd@gmail.com	7815696ecbf1c96e6894b779456d330e
 12	janusz@janusz.pl	866bd82474e4d0de8931db66b2c83bd4
 13	Tomek2@gmail.com	e99a18c428cb38d5f260853678922e03
 1	admin@admin.pl	21232f297a57a5a743894a0e4a801fc3
+10	tomek@tomek.pl	d0d41f1a3cc3f67dcd74694de9fef1b0
 \.
 
 
 --
--- TOC entry 3391 (class 0 OID 16401)
+-- TOC entry 3392 (class 0 OID 16401)
 -- Dependencies: 218
 -- Data for Name: maps; Type: TABLE DATA; Schema: public; Owner: docker
 --
 
-COPY public.maps (id, name, description, date, likes, image, uploader) FROM stdin;
-81	Caen	Caen	2024-10-14	0	caen.jpg	ADMIN
-80	Delivery	W:ET map	2024-10-14	0	delivery.jpg	ADMIN
-79	Supply Depot	W:ET map	2024-10-14	1	supplydepot.jpg	ADMIN
+COPY public.maps (id, name, description, date, likes, image, uploader, pk3file) FROM stdin;
+97	Railgun	W:ET map	2024-10-14	0	railgun.jpg	ADMIN	railgun.pk3
+98	Venice	W:ET map	2024-10-14	0	Venice.jpg	ADMIN	Venice.pk3
+99	Goldrush-gals	W:ET map	2024-10-14	0	goldrush-gals.jpg	ADMIN	goldrush-gals.pk3
+100	Goldrush	W:ET map	2024-10-14	1	goldrush.jpg	ADMIN	goldrush.pk3
+94	Supply Depot	W:ET map	2024-10-14	0	supplydepot.jpg	ADMIN	supplydepot.pk3
+95	Caen	W:ET map	2024-10-14	1	caen.jpg	ADMIN	caen.pk3
+96	Radar summer	W:ET map	2024-10-14	1	radar_summer.jpg	ADMIN	radar_summer.pk3
 \.
 
 
 --
--- TOC entry 3393 (class 0 OID 16408)
+-- TOC entry 3394 (class 0 OID 16408)
 -- Dependencies: 220
 -- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: docker
 --
@@ -282,18 +287,20 @@ COPY public.permissions (id, role) FROM stdin;
 
 
 --
--- TOC entry 3388 (class 0 OID 16391)
+-- TOC entry 3389 (class 0 OID 16391)
 -- Dependencies: 215
 -- Data for Name: user_map_likes; Type: TABLE DATA; Schema: public; Owner: docker
 --
 
 COPY public.user_map_likes (id_user, id_map) FROM stdin;
-3	79
+3	100
+3	95
+13	96
 \.
 
 
 --
--- TOC entry 3394 (class 0 OID 16411)
+-- TOC entry 3395 (class 0 OID 16411)
 -- Dependencies: 221
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: docker
 --
@@ -309,7 +316,7 @@ COPY public.users (id, role, detail, nickname) FROM stdin;
 
 
 --
--- TOC entry 3404 (class 0 OID 0)
+-- TOC entry 3405 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: detailspk; Type: SEQUENCE SET; Schema: public; Owner: docker
 --
@@ -318,16 +325,16 @@ SELECT pg_catalog.setval('public.detailspk', 13, true);
 
 
 --
--- TOC entry 3405 (class 0 OID 0)
+-- TOC entry 3406 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: mapspk; Type: SEQUENCE SET; Schema: public; Owner: docker
 --
 
-SELECT pg_catalog.setval('public.mapspk', 81, true);
+SELECT pg_catalog.setval('public.mapspk', 100, true);
 
 
 --
--- TOC entry 3406 (class 0 OID 0)
+-- TOC entry 3407 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: userpk; Type: SEQUENCE SET; Schema: public; Owner: docker
 --
@@ -336,7 +343,7 @@ SELECT pg_catalog.setval('public.userpk', 16, true);
 
 
 --
--- TOC entry 3234 (class 2606 OID 16425)
+-- TOC entry 3235 (class 2606 OID 16425)
 -- Name: details details_pkey; Type: CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -345,7 +352,7 @@ ALTER TABLE ONLY public.details
 
 
 --
--- TOC entry 3236 (class 2606 OID 16427)
+-- TOC entry 3237 (class 2606 OID 16427)
 -- Name: maps maps_pkey; Type: CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -354,7 +361,7 @@ ALTER TABLE ONLY public.maps
 
 
 --
--- TOC entry 3238 (class 2606 OID 16429)
+-- TOC entry 3239 (class 2606 OID 16429)
 -- Name: permissions permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -363,7 +370,7 @@ ALTER TABLE ONLY public.permissions
 
 
 --
--- TOC entry 3232 (class 2606 OID 16423)
+-- TOC entry 3233 (class 2606 OID 16423)
 -- Name: user_map_likes user_map_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -372,7 +379,7 @@ ALTER TABLE ONLY public.user_map_likes
 
 
 --
--- TOC entry 3240 (class 2606 OID 16431)
+-- TOC entry 3241 (class 2606 OID 16431)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -381,7 +388,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3243 (class 2606 OID 16432)
+-- TOC entry 3244 (class 2606 OID 16432)
 -- Name: users FK 1; Type: FK CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -390,7 +397,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3241 (class 2606 OID 16437)
+-- TOC entry 3242 (class 2606 OID 16437)
 -- Name: user_map_likes FK 1; Type: FK CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -399,7 +406,7 @@ ALTER TABLE ONLY public.user_map_likes
 
 
 --
--- TOC entry 3242 (class 2606 OID 16442)
+-- TOC entry 3243 (class 2606 OID 16442)
 -- Name: user_map_likes FK 2; Type: FK CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -408,7 +415,7 @@ ALTER TABLE ONLY public.user_map_likes
 
 
 --
--- TOC entry 3244 (class 2606 OID 16447)
+-- TOC entry 3245 (class 2606 OID 16447)
 -- Name: users FK 2; Type: FK CONSTRAINT; Schema: public; Owner: docker
 --
 
@@ -416,7 +423,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT "FK 2" FOREIGN KEY (detail) REFERENCES public.details(id) ON UPDATE CASCADE ON DELETE CASCADE NOT VALID;
 
 
--- Completed on 2024-10-14 16:54:31 UTC
+-- Completed on 2024-10-14 19:31:12 UTC
 
 --
 -- PostgreSQL database dump complete

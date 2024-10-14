@@ -8,8 +8,9 @@ class Map {
     private $image;
     private $likes;
     private $uploader;
+    private $pk3file;
 
-    public function __construct($title, $date, $description, $image, $likes = null, $id = null, $uploader=null)
+    public function __construct($title, $date, $description, $image, $pk3file=null, $likes = null, $id = null, $uploader=null)
     {
         $this->id = $id;
         $this->title = $title;
@@ -17,6 +18,18 @@ class Map {
         $this->description = $description;
         $this->image = $image;
         $this->uploader = $uploader;
+        $this->pk3file = $pk3file;
+    }
+
+
+    public function getPk3file()
+    {
+        return $this->pk3file;
+    }
+
+    public function setPk3file($pk3file)
+    {
+        $this->pk3file = $pk3file;
     }
 
     public function getId()

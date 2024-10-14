@@ -54,29 +54,39 @@
                     <img src="public/uploads/<?= $map->getImage(); ?>">
 
                     <div class="flex-center">
-                        <h3 class="base-font bold" style="color: black;"><?= $map->getTitle(); ?></h3>
+                        <h3 class="base-font bold" style="color: white;">Map name: <?= $map->getTitle(); ?></h3>
 
                         <div class="info-section">
 
                         </div>
                         <br>
                         <br>
-                        <p class="base-font" style="color: black;"><?= $map->getDescription(); ?></p>
+                        <p class="base-font" style="color: white;">Map description: <?= $map->getDescription(); ?></p>
                         <br><br>
+
                     </div>
+
+
+                    <form action="download" method="POST">
+                        <input type="hidden" name="map_name" value=<?=$map->getPk3file();?>>
+                        <button type="submit" class="download-button">DOWNLOAD</button>
+                    </form>
 
                     <form method="post">
                         <?php
+
+
+
                             if ($_SESSION['role'] !== 3) {
 
                                 if (is_null($is_liked)) {
                                     echo '<button type="submit" class="like-button base-font" formaction="like_map?id='.$map->getId().'">LIKE</button>';
                                 }
                                 else {
-                                    echo '<button type="submit" class="unlike-button base-font" formaction="remove_like?id='.$map->getId().'">UNLIKE</button>';
+                                    echo '<button type="submit" class="del-button base-font" formaction="remove_like?id='.$map->getId().'">UNLIKE</button>';
                                 }
                             }
-
+                            echo '<br>';
                             if ($_SESSION['role'] === 1) {
                                 echo '<button type="submit" class="del-button base-font" formaction="remove_map?id='.$map->getId().'">REMOVE</button>';
                             }

@@ -62,8 +62,22 @@
 
                     <input class="base-font" type="text" name="title" placeholder="Name" maxlength="30" required>
                     <input class="base-font" type="text" name="description" placeholder="Description" maxlength="250" required>
-                    <input class="base-font" style="border: 0px; box-shadow: none" type="file" name="file" required>
+                    <!-- <input class="base-font" style="border: 0px; box-shadow: none" type="file" name="file" required> -->
+                    <!-- <input class="base-font" style="border: 0px; box-shadow: none" type="file" name="map" accept=".pk3" required> -->
+
+
+                    <input type="file" style="border: 0px; box-shadow: none" name="image" accept="image/*" required>
+                    <input type="file" style="border: 0px; box-shadow: none" name="map" accept=".pk3" required>
+
+                    <!-- <input                                                         type="file" name="map" accept=".pk3"> -->
                     
+
+                    <!-- Download button for the .pk3 file -->
+
+                    <!-- <input type="file" name="image" accept="image/*"> -->
+                    <!-- <input type="file" name="map" accept=".pk3"> -->
+
+
                     <br><button type="submit" class="default-button base-font last-button">CONFIRM</button>
                 </form>
             </div>

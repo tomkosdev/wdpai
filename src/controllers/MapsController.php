@@ -9,6 +9,7 @@ class MapsController extends AppController {
     const MAX_FILE_SIZE = 1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
+    const UPLOAD_DIRECTORY2 = '/../public/uploads2/';
 
     private $message = [];
     private $mapRepository;
@@ -19,23 +20,104 @@ class MapsController extends AppController {
         $this->mapRepository = new MapRepository();
     }
 
+    // public function add_map()
+    // {   
+    //     if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+            
+    //         move_uploaded_file(
+    //             $_FILES['file']['tmp_name'], 
+    //             dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
+    //         );
+
+
+    //         // public function __construct($title, $date, $description, $image, $likes = null, $id = null, $uploader=null, $pk3file=null)
+
+    //         $map = new Map($_POST['title'], $_POST['date'], $_POST['description'], $_FILES['file']['name'] );
+
+    //         $this->mapRepository->addMap($map);
+
+    //         return $this->maps();
+    //     }
+    //     return $this->render('add_map', ['messages' => $this->message]);
+    // }
+
+
+
+
     public function add_map()
     {   
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            
+        if ($this->isPost() && 
+            is_uploaded_file($_FILES['image']['tmp_name']) && 
+            is_uploaded_file($_FILES['map']['tmp_name']) && 
+            $this->validate($_FILES['image']) //&& 
+            //$this->validate($_FILES['map'], ['.pk3'])
+        ) {
             move_uploaded_file(
-                $_FILES['file']['tmp_name'], 
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
+                $_FILES['image']['tmp_name'], 
+                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['image']['name']
             );
-
-            $map = new Map($_POST['title'], $_POST['date'], $_POST['description'], $_FILES['file']['name']);
-
+    
+            move_uploaded_file(
+                $_FILES['map']['tmp_name'], 
+                dirname(__DIR__).self::UPLOAD_DIRECTORY2.$_FILES['map']['name']
+            );
+    
+            $map = new Map($_POST['title'], $_POST['date'], $_POST['description'], $_FILES['image']['name'], $_FILES['map']['name']);
+    
             $this->mapRepository->addMap($map);
-
+    
             return $this->maps();
         }
+    
         return $this->render('add_map', ['messages' => $this->message]);
     }
+
+
+    public function download()
+    {
+                // Check if the form was submitted
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Define the file path
+            // $file = './public/uploads2/Goldrush-gals.pk3';
+
+            $map_name = basename($_POST['map_name']);  // Use basename to prevent directory traversal attacks
+            $file = './public/uploads2/' . $map_name;
+
+
+
+            // Check if the file exists
+            if (file_exists($file)) {
+                // Set headers for the download
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="'.basename($file).'"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($file));
+                // Read and serve the file
+                readfile($file);
+                exit;
+            } else {
+                echo "File not found.";
+            }
+        } else {
+            echo "Invalid request method.";
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function search()

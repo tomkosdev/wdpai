@@ -26,6 +26,7 @@ class MapRepository extends Repository
             $map['date'],
             $map['description'],
             $map['image'],
+            $map['pk3file'],
             $map['likes'],
             $map['id'],
             $map['uploader']
@@ -38,8 +39,8 @@ class MapRepository extends Repository
 
         $stmt = $this->database->connect()->prepare('
             INSERT INTO public.maps(
-                name, description, date, image, uploader
-            ) VALUES (?, ?, ?, ?, ?);
+                name, description, date, image, pk3file, uploader
+            ) VALUES (?, ?, ?, ?, ?, ?);
         ');
     
         $stmt->execute([
@@ -47,6 +48,7 @@ class MapRepository extends Repository
             $map->getDescription(),
             $currentDate,  
             $map->getImage(),
+            $map->getPk3file(),
             $_SESSION['nickname']
         ]);
     }
@@ -108,6 +110,7 @@ class MapRepository extends Repository
                 $map['date'],
                 $map['description'],
                 $map['image'],
+                $map['getPk3file'],
                 $map['likes'],
                 $map['id'],
                 $map['uploader']
