@@ -126,7 +126,6 @@ docker compose down
 ### Desktop - Register
 ![image](screenshots/desktop-register.png)
 
-### Mobile - Films
 ### Mobile - Main page
 ![image](screenshots/phone-main.png)
 ### Mobile - Add a map
