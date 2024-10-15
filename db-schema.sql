@@ -82,3 +82,57 @@ CREATE INDEX IF NOT EXISTS users_pk
     ON public.users(credential);
 
 END;
+
+
+create procedure dislike_map(IN map_id integer, IN user_id integer)
+    language sql
+as
+$$SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+SELECT * FROM public.maps WHERE id = map_id FOR UPDATE;
+
+UPDATE public.maps SET likes=likes-1 WHERE id = map_id;
+DELETE FROM public.user_map_likes WHERE id_map = map_id AND id_user = user_id;$$;
+
+alter procedure dislike_map(integer, integer) owner to docker;
+
+
+
+create function is_map_liked(map_id integer, user_id integer) returns integer
+    language sql
+RETURN (
+    SELECT 1
+    FROM user_map_likes
+    WHERE ((user_map_likes.id_map = is_map_liked.map_id)
+               AND (user_map_likes.id_user = is_map_liked.user_id)));
+
+
+alter function is_map_liked(integer, integer) owner to docker;
+
+
+
+
+
+create procedure like_map(IN map_id integer, IN user_id integer)
+    language sql
+as
+$$SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+SELECT * FROM public.user_map_likes WHERE id_map = map_id FOR UPDATE;
+
+UPDATE public.maps e SET likes=likes+1 WHERE e.id = map_id;
+INSERT INTO public.user_map_likes (id_user, id_map) VALUES (user_id, map_id);
+
+$$;
+
+alter procedure like_map(integer, integer) owner to docker;
+
+
+
+
+
+
+
+
+
+
