@@ -5,7 +5,7 @@
 -- Dumped from database version 16.4 (Debian 16.4-1.pgdg120+2)
 -- Dumped by pg_dump version 16.4
 
--- Started on 2024-10-15 10:00:15 UTC
+-- Started on 2024-10-15 10:18:23 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -249,11 +249,11 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.userpk
 COPY public.maps (id, name, description, date, likes, image, uploader, pk3file) FROM stdin;
 98	Venice	W:ET map	2024-10-14	0	Venice.jpg	ADMIN	Venice.pk3
 99	Goldrush-gals	W:ET map	2024-10-14	0	goldrush-gals.jpg	ADMIN	goldrush-gals.pk3
-96	Radar summer	W:ET map	2024-10-14	1	radar_summer.jpg	ADMIN	radar_summer.pk3
 95	Caen	W:ET map	2024-10-14	0	caen.jpg	ADMIN	caen.pk3
-94	Supply Depot	W:ET map	2024-10-14	1	supplydepot.jpg	ADMIN	supplydepot.pk3
 97	Railgun	W:ET map	2024-10-14	0	railgun.jpg	ADMIN	railgun.pk3
 100	Goldrush	W:ET map	2024-10-14	1	goldrush.jpg	ADMIN	goldrush.pk3
+96	Radar summer	W:ET map	2024-10-14	2	radar_summer.jpg	ADMIN	radar_summer.pk3
+94	Supply Depot	W:ET map	2024-10-14	1	supplydepot.jpg	ADMIN	supplydepot.pk3
 \.
 
 
@@ -282,7 +282,7 @@ COPY public.roles (id, role) FROM stdin;
 COPY public.user_credentials (id, email, password) FROM stdin;
 2	guest@guest.pl	084e0343a0486ff05530df6c705c8bb4
 1	admin@admin.pl	21232f297a57a5a743894a0e4a801fc3
-10	tomek@tomek.pl	d0d41f1a3cc3f67dcd74694de9fef1b0
+10	user@user.pl	ee11cbb19052e40b07aac0ca060c23ee
 \.
 
 
@@ -295,6 +295,7 @@ COPY public.user_credentials (id, email, password) FROM stdin;
 COPY public.user_map_likes (id_user, id_map) FROM stdin;
 13	100
 13	96
+3	96
 3	94
 \.
 
@@ -308,7 +309,7 @@ COPY public.user_map_likes (id_user, id_map) FROM stdin;
 COPY public.users (id, role, credential, nickname) FROM stdin;
 3	1	1	ADMIN
 4	3	2	GUEST
-13	2	10	TomekKromek
+13	2	10	USER
 \.
 
 
@@ -429,7 +430,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT "FK 2" FOREIGN KEY (credential) REFERENCES public.user_credentials(id) ON UPDATE CASCADE ON DELETE CASCADE NOT VALID;
 
 
--- Completed on 2024-10-15 10:00:15 UTC
+-- Completed on 2024-10-15 10:18:23 UTC
 
 --
 -- PostgreSQL database dump complete
