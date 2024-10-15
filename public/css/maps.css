@@ -315,6 +315,7 @@
 
 
 
+
     .header > .logo {
         width: 20vw;
         margin: 1vh;
@@ -431,9 +432,16 @@
     }
 
     .maps-container > .flex-center > form > button {
-        height: 50px;
-        width: 10vw;
+        height: 8vw;
+        width: 30vw;
+        font-size: 3vw;
+        font-weight: 700;
     }
+
+    /* .maps-container > .flex-center > form > button {
+
+        font-size: 3vw;
+    } */
 
     .maps-container > form > input,
     .maps-container > form > button {
