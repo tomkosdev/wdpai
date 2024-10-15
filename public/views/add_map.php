@@ -6,8 +6,6 @@
     <title>Map Depot</title>
     <link rel="icon" type="image/x-icon" href="public/img/icon.svg">
     
-    <script type="text/javascript" src="./public/js/maps.js" defer></script>
-
     <script src="https://kit.fontawesome.com/b192b1ab6f.js" crossorigin="anonymous"></script>
 
 </head>
@@ -29,7 +27,7 @@
 
                     <button type="submit" class="default-button base-font home-icon" formaction="maps"><i class="fa-solid fa-house"></i> HOME</button>
                     <?php
-                        if ($_SESSION['role'] !== 3) {
+                        if ($_SESSION['role'] !== User::Guest) {
                             echo '<button type="submit" class="default-button base-font add-map-icon" formaction="add_map"><i class="fa-solid fa-plus"></i> ADD A MAP</button>';
                             echo '<button type="submit" class="default-button base-font liked-icon" formaction="liked_maps"><i class="fa-solid fa-heart"></i> MY FAVOURITE</button>';
                             echo '<button type="submit" class="default-button base-font settings-icon" formaction="password2"><i class="fa-solid fa-gear"></i> SETTINGS</button>';

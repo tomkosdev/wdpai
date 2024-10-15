@@ -14,8 +14,6 @@ body {
     margin-top: auto; 
 } 
 
-
-
 .flex-row-center {
     display: flex;
     align-items: center;
@@ -38,7 +36,6 @@ body {
 .flex-row-left-center {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     justify-content: start;
     align-items: center;
 }

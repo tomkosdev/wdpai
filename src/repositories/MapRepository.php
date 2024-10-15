@@ -127,7 +127,7 @@ class MapRepository extends Repository
         $stmt = $this->database->connect()->prepare('
             SELECT id_map FROM public.user_map_likes a 
             INNER JOIN public.users u ON a.id_user = u.id 
-            INNER JOIN public.details d ON u.detail = d.id
+            INNER JOIN public.user_credentials d ON u.credential = d.id
             WHERE d.email = :email');
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);

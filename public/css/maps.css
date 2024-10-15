@@ -132,13 +132,11 @@
     text-align: left;
 }
 
-/* tomek */
 .download-button {
 
     height: 35px;
     color: black;
     width: 10vw;
-    /* margin: 1vh; */
     margin-bottom: 1vh;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border: 1px solid #414141;
@@ -236,14 +234,6 @@
     margin-top: 5px;
 }
 
-/* .maps-css > a > div > div > .likes {
-    background-color: rgb(248,215,218);
-    border: 1px solid #942129;
-    color: rgb(148,33,41);
-    padding: 1.5vh;
-    margin: 0px;
-} */
-
 .maps-css > a > div > div > form > button {
     height: 15px;
     width: 4vw;
@@ -266,7 +256,6 @@
 }
 
 .maps-container > .flex-center > form > .like-button {
-    /* border: 1px solid #2a2a2a; */
     color: #3d8d42;
 }
 
@@ -280,15 +269,6 @@
     color: rgb(225, 66, 66);
 }
 
-
-/*.info-section {
-    font-size: 0.7vw;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 0px;
-    color: #2d2d2d;
-    letter-spacing: 1px;
-}  */
 
 .info-section {
     display: flex;
@@ -304,12 +284,6 @@
     letter-spacing: 1px;
 }
 
-
-
-/* .info-section > i {
-    display: inline-block;
-    margin-right: 1em;
-} */
 
 .maps-container > .flex-center > p {
     color: black;
@@ -357,7 +331,6 @@
     
 
     .maps-css > a > div {
-        /* border: 1px solid gray; */
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); 
         border-radius: 1em 1em 0 0;
         height: 500px;
@@ -381,8 +354,6 @@
         justify-content: flex-start;
         font-size: 50%;
     }
-
-
 
     .info-section  {
         font-size: 20px;

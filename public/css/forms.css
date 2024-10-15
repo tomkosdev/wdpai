@@ -17,8 +17,6 @@
 
 .start-container {
     background-color: white;
-    /* border: 5px solid #2d2d2d; */
-    /* border-radius: 20px; */
     position: relative;
 
     min-height: max-content;
@@ -75,7 +73,6 @@
     width: 300px;
 
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    /* border: 1px solid #2d2d2d; */
     margin: 1vh;
 
     color: black;
@@ -88,9 +85,6 @@ form > .no-valid {
     border: 1px solid red;
 }
 
-/* .cell {
-    width: 100%;
-} */
 
 .start-container p {
     font-size: 1.7vh;

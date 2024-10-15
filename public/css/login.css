@@ -158,29 +158,6 @@ body::before {
     color: #181c20;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-device-width: 480px) {
     .start-container {
         transform: scale(2) translateY(-20%);

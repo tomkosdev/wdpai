@@ -18,7 +18,7 @@ class SecurityController extends AppController {
     {   
         session_start();
 
-        if (!$this->isPost() && ($_SESSION['role'] !== 3)) {
+        if (!$this->isPost() && ($_SESSION['role'] !== User::Guest)) {
             header("Location: /maps");
             exit;
         }   
@@ -33,15 +33,15 @@ class SecurityController extends AppController {
         $user = $this->userRepository->getUser($email);
 
         if (!$user) {
-            return $this->render('login', ['messages' => ['User not found!']]);
+            return $this->render('login', ['messages' => ['User not found.']]);
         }
 
         if ($user->getEmail() !== $email) {
-            return $this->render('login', ['messages' => ['User does not exist!']]);
+            return $this->render('login', ['messages' => ['User not exist.']]);
         }
 
         if ($user->getPassword() !== $password) {
-            return $this->render('login', ['messages' => ['Wrong password!']]);
+            return $this->render('login', ['messages' => ['Wrong password.']]);
         }
 
         $this->userRepository->createSession($user);
@@ -55,7 +55,7 @@ class SecurityController extends AppController {
     {
         session_start();
 
-        if (!$this->isPost() && ($_SESSION['role'] !== 3)) {
+        if (!$this->isPost() && ($_SESSION['role'] !== User::Guest)) {
             header("Location: /maps");
             exit;
         }   
@@ -69,7 +69,7 @@ class SecurityController extends AppController {
         $password = $_POST['password'];
         
         if (!is_null($this->userRepository->getUser($email))) {
-            return $this->render('register', ['messages' => ['Account already exists!']]);
+            return $this->render('register', ['messages' => ['Account exists!']]);
         }
         
         $user = new User($email, md5($password), $nickname);
@@ -89,7 +89,7 @@ class SecurityController extends AppController {
         $repeated_password = $_POST['repeated-password'];
 
         if ($new_password !== $repeated_password) {
-            return $this->render('password', ['messages' => ['Passwords do not match!']]); 
+            return $this->render('password', ['messages' => ['Passwords not match!']]); 
         }
 
         $user = $this->userRepository->getUser($email);
@@ -110,7 +110,7 @@ class SecurityController extends AppController {
         $repeated_password = $_POST['repeated-password'];
 
         if ($new_password !== $repeated_password) {
-            return $this->render('password2', ['messages' => ['Passwords do not match!']]); 
+            return $this->render('password2', ['messages' => ['Passwords not match!']]); 
         }
 
         if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {

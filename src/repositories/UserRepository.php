@@ -9,7 +9,7 @@ class UserRepository extends Repository
     public function getUser(string $email): ? User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT u.id, email, password, nickname, role FROM public.users u INNER JOIN details d ON u.detail = d.id WHERE email = :email');
+            SELECT u.id, email, password, nickname, role FROM public.users u INNER JOIN user_credentials d ON u.credential = d.id WHERE email = :email');
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -32,7 +32,7 @@ class UserRepository extends Repository
     public function addUser(User $user)
     {
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO public.details (email, password)
+            INSERT INTO public.user_credentials (email, password)
             VALUES (?, ?)');
 
         $stmt->execute([
@@ -41,7 +41,7 @@ class UserRepository extends Repository
         ]);
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO public.users (nickname, detail)
+            INSERT INTO public.users (nickname, credential)
             VALUES (?, ?)');
 
         $stmt->execute([
@@ -53,7 +53,7 @@ class UserRepository extends Repository
     public function changePassword(User $user, string $new_password)
     {
         $stmt = $this->database->connect()->prepare('
-        UPDATE public.details SET password = :password WHERE email = :email');
+        UPDATE public.user_credentials SET password = :password WHERE email = :email');
 
         $stmt->bindParam(':password', $new_password, PDO::PARAM_STR);
         $stmt->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
@@ -63,7 +63,7 @@ class UserRepository extends Repository
     public function getUserId(User $user): int
     {
         $stmt = $this->database->connect()->prepare('
-        SELECT * FROM public.details WHERE email = :email AND password = :password');
+        SELECT * FROM public.user_credentials WHERE email = :email AND password = :password');
 
         $stmt->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
         $stmt->bindParam(':password', $user->getPassword(), PDO::PARAM_STR);

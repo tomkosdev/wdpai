@@ -1,6 +1,7 @@
 <?php
 
 require 'Routing.php';
+require_once './src/models/User.php';
 
 session_start();
 
@@ -24,7 +25,7 @@ Router::post('download', 'MapsController');
 
 
 if (isset($_SESSION['email'])) {
-    if ($_SESSION['role'] !== 3) {
+    if ($_SESSION['role'] !== User::Guest) {
         Router::post('add_map', 'MapsController');
         Router::get('remove_map', 'MapsController');
         Router::get('like_map', 'MapsController');

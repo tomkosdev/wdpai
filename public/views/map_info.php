@@ -24,7 +24,7 @@
 
                     <button type="submit" class="default-button base-font home-icon" formaction="maps"><i class="fa-solid fa-house"></i> HOME</button>
                     <?php
-                        if ($_SESSION['role'] !== 3) {
+                        if ($_SESSION['role'] !== User::Guest) {
                             echo '<button type="submit" class="default-button base-font add-map-icon" formaction="add_map"><i class="fa-solid fa-plus"></i> ADD A MAP</button>';
                             echo '<button type="submit" class="default-button base-font liked-icon" formaction="liked_maps"><i class="fa-solid fa-heart"></i> MY FAVOURITE</button>';
                             echo '<button type="submit" class="default-button base-font settings-icon" formaction="password2"><i class="fa-solid fa-gear"></i> SETTINGS</button>';
@@ -77,7 +77,7 @@
 
 
 
-                            if ($_SESSION['role'] !== 3) {
+                            if ($_SESSION['role'] !== User::Guest) {
 
                                 if (is_null($is_liked)) {
                                     echo '<button type="submit" class="like-button base-font" formaction="like_map?id='.$map->getId().'">LIKE</button>';
@@ -87,7 +87,7 @@
                                 }
                             }
                             echo '<br>';
-                            if ($_SESSION['role'] === 1) {
+                            if ($_SESSION['role'] === User::Admin) {
                                 echo '<button type="submit" class="del-button base-font" formaction="remove_map?id='.$map->getId().'">REMOVE</button>';
                             }
                         ?>

@@ -1,6 +1,11 @@
 <?php
 
 class User {
+
+    const Admin = 1;
+    const User = 2;
+    const Guest = 3;
+
     private $id;
     private $email;
     private $password;

@@ -20,29 +20,6 @@ class MapsController extends AppController {
         $this->mapRepository = new MapRepository();
     }
 
-    // public function add_map()
-    // {   
-    //     if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            
-    //         move_uploaded_file(
-    //             $_FILES['file']['tmp_name'], 
-    //             dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-    //         );
-
-
-    //         // public function __construct($title, $date, $description, $image, $likes = null, $id = null, $uploader=null, $pk3file=null)
-
-    //         $map = new Map($_POST['title'], $_POST['date'], $_POST['description'], $_FILES['file']['name'] );
-
-    //         $this->mapRepository->addMap($map);
-
-    //         return $this->maps();
-    //     }
-    //     return $this->render('add_map', ['messages' => $this->message]);
-    // }
-
-
-
 
     public function add_map()
     {   
@@ -75,19 +52,11 @@ class MapsController extends AppController {
 
     public function download()
     {
-                // Check if the form was submitted
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Define the file path
-            // $file = './public/uploads2/Goldrush-gals.pk3';
-
-            $map_name = basename($_POST['map_name']);  // Use basename to prevent directory traversal attacks
+            $map_name = basename($_POST['map_name']);  
             $file = './public/uploads2/' . $map_name;
 
-
-
-            // Check if the file exists
             if (file_exists($file)) {
-                // Set headers for the download
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
                 header('Content-Disposition: attachment; filename="'.basename($file).'"');
@@ -95,28 +64,18 @@ class MapsController extends AppController {
                 header('Cache-Control: must-revalidate');
                 header('Pragma: public');
                 header('Content-Length: ' . filesize($file));
-                // Read and serve the file
                 readfile($file);
                 exit;
             } else {
-                echo "File not found.";
+                $this->message[] = 'File not found.';
             }
         } else {
-            echo "Invalid request method.";
+            $this->message[] = 'Invalid request method.';
+
         }
 
+        return $this->render('map_info', ['messages' => $this->message]);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -167,7 +126,7 @@ class MapsController extends AppController {
         $id_map = $_GET["id"];
         $id_user = $_SESSION["id"];
 
-        if ($_SESSION['role'] !== 3) {
+        if ($_SESSION['role'] !== User::Guest) {
 
             $map = $this->mapRepository->getMap($id_map);
             $likes = $map->getLiked();
@@ -191,7 +150,7 @@ class MapsController extends AppController {
         $id_map = $_GET["id"];
         $id_user = $_SESSION["id"];
 
-        if ($_SESSION['role'] !== 3) {
+        if ($_SESSION['role'] !== User::Guest) {
             $this->mapRepository->removeLike($id_map, $id_user);
         }
 
@@ -215,7 +174,7 @@ class MapsController extends AppController {
             return $this->render('error404');
         }
 
-        if ($_SESSION['role'] === 1) {
+        if ($_SESSION['role'] === User::Admin) {
             $this->mapRepository->removeMap($id);
         }
 
