@@ -306,6 +306,15 @@
 
 @media screen and (max-device-width: 500px){
     
+    .maps-css > a {
+        width: auto;
+        height: 250px;
+        max-width: 700px;
+    }
+
+
+
+
     .header > .logo {
         width: 20vw;
         margin: 1vh;
