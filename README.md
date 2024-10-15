@@ -5,7 +5,6 @@
 - [Tech stack](#tech-stack)
 - [Database design and structure](#database-design-and-structure)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Features](#features)
 - [Screenshots](#screenshots)
 
